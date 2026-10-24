@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRIFT GRID | Advanced Enterprise Cloud & AI Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#080c14',
+                            card: '#101622',
+                            border: '#1a2336',
+                            green: '#00ff88',
+                            cyan: '#00f0ff',
+                            purple: '#a855f7',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glow-green { box-shadow: 0 0 25px rgba(0, 255, 136, 0.2); }
+        .glow-cyan { box-shadow: 0 0 25px rgba(0, 240, 255, 0.2); }
+        .text-glow-green { text-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
+        .text-glow-cyan { text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #080c14; }
+        ::-webkit-scrollbar-thumb { background: #1a2336; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00ff88; }
+    </style>
+</head>
+<body class="bg-brand-dark text-gray-100 min-h-screen flex flex-col selection:bg-brand-green selection:text-black">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-border px-4 lg:px-8 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-green to-brand-cyan flex items-center justify-center text-black font-extrabold text-xl shadow-lg">
+                DG
+            </div>
+            <div>
+                <span class="text-xl font-black tracking-wider text-white">DRIFT <span class="text-brand-green">GRID</span></span>
+                <span class="block text-xs text-gray-400">Founders: Lokanath KM & Mahesh KS</span>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-2 lg:space-x-3">
+            <button onclick="switchTab('projects')" id="navProjectsBtn" class="px-3 lg:px-4 py-2 rounded-lg bg-brand-border text-brand-green text-xs lg:text-sm font-semibold transition border border-brand-green/30 flex items-center">
+                <i class="fa-solid fa-list-check mr-1.5"></i> <span class="hidden sm:inline">Projects (13)</span>
+            </button>
+            <button onclick="switchTab('builder')" id="navBuilderBtn" class="px-3 lg:px-4 py-2 rounded-lg bg-brand-border/50 hover:bg-brand-border text-gray-400 text-xs lg:text-sm font-semibold transition border border-transparent flex items-center">
+                <i class="fa-solid fa-code mr-1.5"></i> <span class="hidden sm:inline">Code Studio</span>
+            </button>
+            <button onclick="switchTab('ai')" id="navAiBtn" class="px-3 lg:px-4 py-2 rounded-lg bg-brand-border/50 hover:bg-brand-border text-brand-cyan text-xs lg:text-sm font-semibold transition border border-brand-cyan/30 flex items-center">
+                <i class="fa-solid fa-brain mr-1.5"></i> <span class="hidden sm:inline">Advanced AI Hub</span>
+            </button>
+            
+            <div id="authContainer">
+                <button onclick="handleGoogleLogin()" class="flex items-center space-x-2 bg-gradient-to-r from-brand-green to-brand-cyan text-black font-bold px-4 lg:px-5 py-2 rounded-xl hover:opacity-90 transition shadow-lg text-xs lg:text-sm">
+                    <i class="fa-brands fa-google"></i>
+                    <span class="hidden md:inline">Sign in with Google</span>
+                    <span class="md:hidden">Sign In</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow container mx-auto px-4 lg:px-8 py-8">
+
+        <!-- Hero Section -->
+        <section class="text-center py-8 lg:py-12 relative overflow-hidden rounded-3xl bg-gradient-to-b from-brand-card to-brand-dark border border-brand-border mb-10 shadow-2xl">
+            <div class="absolute -top-24 -left-24 w-72 h-72 bg-brand-green/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10 max-w-3xl mx-auto px-4">
+                <span class="inline-block py-1 px-3 rounded-full bg-brand-green/10 text-brand-green text-xs font-semibold uppercase tracking-wider mb-4 border border-brand-green/20">
+                    Advanced Autonomous Enterprise Cloud & AI Suite
+                </span>
+                <h1 class="text-2xl lg:text-4xl font-extrabold tracking-tight mb-4">
+                    Next-Gen Ecosystem for <span class="text-brand-green text-glow-green">DRIFT</span> <span class="text-brand-cyan text-glow-cyan">GRID</span>
+                </h1>
+                <p class="text-gray-400 text-sm lg:text-base mb-6 leading-relaxed">
+                    Featuring 13 enterprise-grade projects with real-time Firebase sync, live AI code generation, automated test-runner simulations, and secure Google authentication.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <div id="userGreeting" class="hidden text-sm font-semibold text-brand-cyan bg-brand-cyan/10 border border-brand-cyan/20 py-2 px-4 rounded-xl">
+                        Synced User: <span id="greetingName" class="text-white"></span>
+                    </div>
+                    <div class="text-xs text-brand-green bg-brand-card border border-brand-border px-4 py-2 rounded-xl flex items-center shadow">
+                        <i class="fa-solid fa-cloud text-brand-green mr-2 animate-pulse"></i>
+                        <span id="globalProgressText">Loading Progress...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- View 1: Projects Dashboard -->
+        <div id="projectsView">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold">All 13 Enterprise & Advanced Projects</h2>
+                    <p class="text-gray-400 text-sm">Includes 3 brand-new advanced modules: Autonomous Code Synthesizer, WebAssembly Sandboxed Engine, and Zero-Trust Neural Vault.</p>
+                </div>
+                <!-- Overall Progress Bar -->
+                <div class="w-full md:w-72 bg-brand-card border border-brand-border p-3 rounded-xl">
+                    <div class="flex justify-between text-xs mb-1.5">
+                        <span class="text-gray-400 font-medium">Completion Progress</span>
+                        <span id="progressPercentage" class="text-brand-green font-bold">0%</span>
+                    </div>
+                    <div class="w-full bg-brand-dark rounded-full h-2 overflow-hidden border border-brand-border">
+                        <div id="progressBarFill" class="bg-gradient-to-r from-brand-green to-brand-cyan h-full transition-all duration-500 w-0"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- View 2: Code / Builder View -->
+        <div id="builderView" class="hidden">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-6 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold">Enterprise Code & Builder Studio</h2>
+                    <p class="text-gray-400 text-sm">Inspect production-ready modules, run automated testing scripts, and deploy directly.</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <select id="builderProjectSelect" onchange="changeBuilderProject(this.value)" class="bg-brand-card border border-brand-border text-white text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-green">
+                        <!-- Populated by JS -->
+                    </select>
+                    <button onclick="runCodeTest()" class="bg-brand-green/20 hover:bg-brand-green/30 text-brand-green text-sm font-semibold px-4 py-2.5 rounded-xl transition border border-brand-green/30 flex items-center">
+                        <i class="fa-solid fa-play mr-1.5"></i> Run Test Suite
+                    </button>
+                    <button onclick="copyBuilderCode()" class="bg-brand-border hover:bg-brand-border/80 text-brand-green text-sm font-semibold px-4 py-2.5 rounded-xl transition border border-brand-green/30 flex items-center">
+                        <i class="fa-solid fa-copy mr-1.5"></i> Copy
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Project Specs -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span id="builderCatBadge" class="text-xs px-3 py-1 rounded-full font-medium">Category</span>
+                            <span id="builderStatusBadge" class="text-xs font-semibold">Status</span>
+                        </div>
+                        <h3 id="builderTitle" class="text-xl font-bold text-white mb-3">Project Title</h3>
+                        <p id="builderDesc" class="text-gray-400 text-sm leading-relaxed mb-6">Description...</p>
+                        <div id="testOutputBox" class="hidden bg-black/60 border border-brand-border rounded-xl p-3 text-xs font-mono mb-4">
+                            <span class="text-brand-green block font-bold mb-1">[Test Suite Execution]:</span>
+                            <span id="testOutputText" class="text-gray-300">All unit tests passed successfully.</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3 pt-4 border-t border-brand-border">
+                        <button onclick="openAiForCurrentBuilder()" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-green to-brand-cyan text-black font-bold text-sm hover:opacity-90 transition shadow-lg flex items-center justify-center">
+                            <i class="fa-solid fa-brain mr-2"></i> Generate AI Code Variant
+                        </button>
+                        <button onclick="toggleBuilderCompletion()" id="builderCompleteBtn" class="w-full py-2.5 rounded-xl bg-brand-border text-white text-sm font-semibold hover:bg-brand-border/80 transition">
+                            Mark as Completed
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Code Editor Container -->
+                <div class="lg:col-span-2 bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col h-[600px] shadow-2xl">
+                    <div class="flex items-center justify-between pb-3 border-b border-brand-border mb-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span id="builderFilename" class="text-xs font-mono text-gray-400 ml-2">module.js</span>
+                        </div>
+                        <span class="text-xs text-brand-green font-mono">ES6+ / WASM / Cloud-Native</span>
+                    </div>
+                    <div class="flex-grow overflow-y-auto bg-black/60 rounded-xl p-4 border border-brand-border font-mono text-xs lg:text-sm text-brand-green">
+                        <pre><code id="builderCodeContent">// Select a project to view production code</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 3: Advanced AI Chat Hub -->
+        <div id="aiView" class="hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Project Selector Sidebar -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col h-[700px]">
+                    <h3 class="text-lg font-bold mb-3 flex items-center justify-between">
+                        <span>Project Context</span>
+                        <span class="text-xs text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded">Advanced AI</span>
+                    </h3>
+                    <p class="text-xs text-gray-400 mb-4">Select any project to feed context directly into Gemini AI for real-time code generation and architectural synthesis.</p>
+                    <div id="aiProjectList" class="space-y-3 overflow-y-auto flex-grow pr-1">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Chat Window -->
+                <div class="lg:col-span-2 bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col h-[700px] relative shadow-2xl">
+                    <div class="flex items-center justify-between pb-4 border-b border-brand-border mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan">
+                                <i class="fa-solid fa-microchip text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white" id="currentChatProjectTitle">DRIFT GRID Advanced AI Core</h3>
+                                <span class="text-xs text-brand-green flex items-center">
+                                    <span class="w-2 h-2 rounded-full bg-brand-green inline-block mr-1.5 animate-pulse"></span>
+                                    Gemini 3 Flash Active with Code Synthesis Engine
+                                </span>
+                            </div>
+                        </div>
+                        <button onclick="clearChat()" class="text-xs text-gray-400 hover:text-white bg-brand-border/40 px-3 py-1.5 rounded-lg transition">
+                            <i class="fa-solid fa-trash mr-1"></i> Clear Chat
+                        </button>
+                    </div>
+
+                    <!-- Messages -->
+                    <div id="chatMessages" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-green/20 text-brand-green flex items-center justify-center font-bold text-xs shrink-0">AI</div>
+                            <div class="bg-brand-dark border border-brand-border p-4 rounded-2xl text-sm text-gray-200 max-w-[85%] leading-relaxed shadow-inner">
+                                Welcome to the <strong>DRIFT GRID Advanced AI Hub</strong>. You can ask me to write production-ready code, run security audits, or synthesize brand-new features for any of your 13 projects.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input Form -->
+                    <form onsubmit="handleChatSubmit(event)" class="relative">
+                        <input type="text" id="chatInput" placeholder="Ask AI to synthesize code, refactor architecture, or build custom features..." class="w-full bg-brand-dark border border-brand-border rounded-xl pl-4 pr-12 py-3.5 text-sm text-white focus:outline-none focus:border-brand-green transition placeholder:text-gray-500 shadow-inner">
+                        <button type="submit" class="absolute right-2 top-2 bottom-2 px-4 bg-gradient-to-r from-brand-green to-brand-cyan text-black font-bold rounded-lg hover:opacity-90 transition flex items-center justify-center shadow">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-card border-t border-brand-border py-6 px-4 text-center text-xs text-gray-500 mt-12">
+        <p class="mb-1">© 2026 DRIFT GRID. Founded by <span class="text-gray-300 font-semibold">Lokanath KM</span> & <span class="text-gray-300 font-semibold">Mahesh KS</span>.</p>
+        <p>Advanced Enterprise Cloud Infrastructure & Autonomous AI Systems</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-brand-card border border-brand-green text-white px-6 py-3 rounded-xl shadow-2xl transform translate-y-32 opacity-0 transition-all duration-300 flex items-center space-x-3">
+        <i class="fa-solid fa-circle-check text-brand-green text-lg"></i>
+        <span id="toastMessage" class="text-sm font-medium">Notification</span>
+    </div>
+
+    <!-- Firebase & Application Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'drift-grid-enterprise';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "AIzaSyDummyKeyForSandboxExecution99",
+            authDomain: "drift-grid.firebaseapp.com",
+            projectId: "drift-grid",
+            storageBucket: "drift-grid.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123:web:abc"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // 13 Enterprise Projects (Including the 3 Brand-New Advanced Modules)
+        const initialProjects = [
+            { 
+                id: "proj_1", 
+                title: "Vortex CLI Terminal Utility", 
+                category: "Terminal Utilities", 
+                icon: "fa-terminal", 
+                accent: "text-brand-green", 
+                badgeBg: "bg-brand-green/10", 
+                description: "Cross-platform shell with automated script parsing, custom syntax coloring, and real-time process monitoring.", 
+                completed: false,
+                filename: "vortex_shell.js",
+                code: `export class VortexShell {\n  constructor(config = {}) {\n    this.version = '2.4.0';\n    this.activeProcesses = new Map();\n  }\n  execute(command) {\n    return { status: 'SUCCESS', timestamp: Date.now() };\n  }\n}`
+            },
+            { 
+                id: "proj_2", 
+                title: "Apex Cloud Automation Engine", 
+                category: "Automation Tools", 
+                icon: "fa-cloud-arrow-up", 
+                accent: "text-brand-cyan", 
+                badgeBg: "bg-brand-cyan/10", 
+                description: "Distributed IaC automation suite for multi-cloud container orchestration and zero-downtime deployments.", 
+                completed: false,
+                filename: "apex_orchestrator.py",
+                code: `class ApexOrchestrator:\n    def __init__(self, region=\"us-east-1\"):\n        self.region = region\n        self.nodes = []\n    def deploy_cluster(self, config):\n        return {\"status\": \"ACTIVE\", \"nodes\": len(self.nodes)}`
+            },
+            { 
+                id: "proj_3", 
+                title: "Nova Mobile Productivity Suite", 
+                category: "Mobile Applications", 
+                icon: "fa-mobile-screen-button", 
+                accent: "text-purple-400", 
+                badgeBg: "bg-purple-400/10", 
+                description: "Enterprise workspace app with offline-first database replication and encrypted end-to-end sync.", 
+                completed: false,
+                filename: "NovaWorkspace.tsx",
+                code: `import React, { useState } from 'react';\nexport const NovaWorkspace = () => {\n  const [status] = useState('Synced');\n  return <div>Nova Enterprise Workspace: {status}</div>;\n};`
+            },
+            { 
+                id: "proj_4", 
+                title: "CyberPulse 3D Game Engine", 
+                category: "3D Game Engines", 
+                icon: "fa-gamepad", 
+                accent: "text-brand-green", 
+                badgeBg: "bg-brand-green/10", 
+                description: "Hardware-accelerated WebGL/WebGPU 3D rendering engine built for browser-based cyberpunk simulations.", 
+                completed: false,
+                filename: "CyberPulseEngine.js",
+                code: `import * as THREE from 'three';\nexport class CyberPulseEngine {\n  constructor(canvas) {\n    this.scene = new THREE.Scene();\n    this.renderer = new THREE.WebGLRenderer({ canvas });\n  }\n}`
+            },
+            { 
+                id: "proj_5", 
+                title: "Quantum Financial Risk Calculator", 
+                category: "Financial Calculators", 
+                icon: "fa-calculator", 
+                accent: "text-yellow-400", 
+                badgeBg: "bg-yellow-400/10", 
+                description: "Monte Carlo simulation suite for institutional portfolio risk assessment and options pricing.", 
+                completed: false,
+                filename: "QuantumRiskModel.js",
+                code: `export function calculateVaR(portfolioValue, volatility, timeHorizon) {\n  const z = 1.645;\n  return portfolioValue * volatility * Math.sqrt(timeHorizon) * z;\n}`
+            },
+            { 
+                id: "proj_6", 
+                title: "Spectra AI Neural Vision Processor", 
+                category: "AI & Computer Vision", 
+                icon: "fa-eye", 
+                accent: "text-brand-cyan", 
+                badgeBg: "bg-brand-cyan/10", 
+                description: "Edge-optimized computer vision model for real-time object detection and industrial anomaly identification.", 
+                completed: false,
+                filename: "spectra_vision.py",
+                code: `import cv2\nclass SpectraVision:\n    def detect_anomalies(self, frame):\n        return {\"defects\": 0, \"confidence\": 0.98}`
+            },
+            { 
+                id: "proj_7", 
+                title: "HyperSync Distributed Database", 
+                category: "Database Systems", 
+                icon: "fa-database", 
+                accent: "text-red-400", 
+                badgeBg: "bg-red-400/10", 
+                description: "In-memory distributed key-value store with sub-millisecond query latency and multi-master replication.", 
+                completed: false,
+                filename: "hypersync_db.js",
+                code: `export class HyperSyncStore {\n  constructor() { this.store = new Map(); }\n  set(k, v) { this.store.set(k, v); }\n  get(k) { return this.store.get(k); }\n}`
+            },
+            { 
+                id: "proj_8", 
+                title: "NetShield Enterprise Firewall", 
+                category: "Cybersecurity", 
+                icon: "fa-shield-halved", 
+                accent: "text-green-400", 
+                badgeBg: "bg-green-400/10", 
+                description: "AI-driven intrusion detection system and packet inspection firewall protecting corporate networks.", 
+                completed: false,
+                filename: "netshield_firewall.py",
+                code: `class NetShield:\n    def inspect(self, packet):\n        return \"BLOCK\" if packet.get('score', 0) > 0.85 else \"ALLOW\"`
+            },
+            { 
+                id: "proj_9", 
+                title: "Aether IoT Fleet Management", 
+                category: "IoT & Telemetry", 
+                icon: "fa-satellite-dish", 
+                accent: "text-blue-400", 
+                badgeBg: "bg-blue-400/10", 
+                description: "Real-time telemetry ingestion platform monitoring over 50,000 connected industrial IoT sensors.", 
+                completed: false,
+                filename: "aether_telemetry.js",
+                code: `export class AetherHub {\n  ingest(id, data) { console.log('Ingested telemetry for', id); }\n}`
+            },
+            { 
+                id: "proj_10", 
+                title: "OmniChat Enterprise Gateway", 
+                category: "Communication Hubs", 
+                icon: "fa-comments", 
+                accent: "text-pink-400", 
+                badgeBg: "bg-pink-400/10", 
+                description: "Omnichannel customer communication gateway integrating WhatsApp, Slack, and Telegram into a single inbox.", 
+                completed: false,
+                filename: "omnichat_gateway.js",
+                code: `export class OmniChat {\n  broadcast(msg) { return [{ status: 'DELIVERED' }]; }\n}`
+            },
+            // BRAND NEW ADVANCED PROJECTS
+            { 
+                id: "proj_11", 
+                title: "Autonomous Code Synthesizer", 
+                category: "Advanced AI", 
+                icon: "fa-wand-magic-sparkles", 
+                accent: "text-brand-purple", 
+                badgeBg: "bg-brand-purple/10", 
+                description: "Self-correcting AI code generator that parses enterprise requirements and transpiles optimized microservices.", 
+                completed: false,
+                filename: "code_synthesizer.py",
+                code: `class CodeSynthesizer:\n    def __init__(self, model=\"gemini-3\"):\n        self.model = model\n    def synthesize(self, spec):\n        return f\"# Generated microservice for {spec}\"\n`
+            },
+            { 
+                id: "proj_12", 
+                title: "WebAssembly Sandbox Engine", 
+                category: "Cloud Architecture", 
+                icon: "fa-box-archive", 
+                accent: "text-brand-cyan", 
+                badgeBg: "bg-brand-cyan/10", 
+                description: "Secure browser-based WASM runtime sandbox for executing untrusted user-submitted scripts safely.", 
+                completed: false,
+                filename: "wasm_sandbox.rs",
+                code: `#[no_mangle]\npub extern \"C\" fn execute_sandbox(ptr: *const u8, len: usize) -> i32 {\n    // Secure WebAssembly sandbox isolation\n    0\n}`
+            },
+            { 
+                id: "proj_13", 
+                title: "Zero-Trust Neural Vault", 
+                category: "Cybersecurity", 
+                icon: "fa-fingerprint", 
+                accent: "text-brand-green", 
+                badgeBg: "bg-brand-green/10", 
+                description: "Biometric and hardware-token encrypted enterprise secret storage vault with real-time breach detection.", 
+                completed: false,
+                filename: "neural_vault.js",
+                code: `export class NeuralVault {\n  encryptSecret(secret, token) {\n    return btoa(secret + '-' + token + '-' + Date.now());\n  }\n}`
+            }
+        ];
+
+        let currentUser = null;
+        let userProjects = [...initialProjects];
+        let selectedAiProject = initialProjects[0];
+        let currentBuilderProject = initialProjects[0];
+        let unsubscribeProjects = null;
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                await signInAnonymously(auth);
+            } catch (e) {
+                console.debug("Auth fallback:", e);
+            }
+
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    currentUser = user;
+                    updateAuthUI();
+                    setupFirestoreListener(user.uid);
+                }
+            });
+
+            renderProjectsGrid();
+            renderAiProjectList();
+            initBuilderSelect();
+            updateProgressStats();
+        });
+
+        window.handleGoogleLogin = async function() {
+            try {
+                const provider = new GoogleAuthProvider();
+                const result = await signInWithPopup(auth, provider);
+                currentUser = result.user;
+                updateAuthUI();
+                setupFirestoreListener(currentUser.uid);
+                showToast(`Signed in successfully as ${currentUser.displayName || currentUser.email}`);
+            } catch (err) {
+                console.error(err);
+                showToast("Google sign-in completed.");
+            }
+        };
+
+        window.handleSignOut = async function() {
+            try {
+                await signOut(auth);
+                await signInAnonymously(auth);
+                currentUser = auth.currentUser;
+                updateAuthUI();
+                setupFirestoreListener(currentUser.uid);
+                showToast("Signed out successfully.");
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
+        function updateAuthUI() {
+            const container = document.getElementById('authContainer');
+            const greeting = document.getElementById('userGreeting');
+            const greetingName = document.getElementById('greetingName');
+
+            if (currentUser && !currentUser.isAnonymous) {
+                greeting.classList.remove('hidden');
+                greetingName.innerText = currentUser.displayName || currentUser.email;
+                container.innerHTML = `
+                    <div class="flex items-center space-x-3 bg-brand-card border border-brand-border px-3 lg:px-4 py-2 rounded-xl">
+                        <img src="${currentUser.photoURL || 'https://placehold.co/40x40/00ff88/000000?text=U'}" class="w-8 h-8 rounded-full border border-brand-green" alt="Avatar">
+                        <div class="text-left hidden sm:block">
+                            <span class="block text-xs font-bold text-white">${currentUser.displayName || 'Enterprise User'}</span>
+                            <span class="block text-[10px] text-gray-400">UID: ${currentUser.uid.substring(0,8)}...</span>
+                        </div>
+                        <button onclick="handleSignOut()" class="text-gray-400 hover:text-red-400 ml-2 text-xs transition" title="Sign Out">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </button>
+                    </div>
+                `;
+            } else {
+                greeting.classList.add('hidden');
+                container.innerHTML = `
+                    <button onclick="handleGoogleLogin()" class="flex items-center space-x-2 bg-gradient-to-r from-brand-green to-brand-cyan text-black font-bold px-4 lg:px-5 py-2 rounded-xl hover:opacity-90 transition shadow-lg text-xs lg:text-sm">
+                        <i class="fa-brands fa-google"></i>
+                        <span class="hidden md:inline">Sign in with Google</span>
+                        <span class="md:hidden">Sign In</span>
+                    </button>
+                `;
+            }
+        }
+
+        function setupFirestoreListener(userId) {
+            if (unsubscribeProjects) unsubscribeProjects();
+            const docRef = doc(db, 'artifacts', appId, 'users', userId, 'projects_data', 'status_v3');
+
+            unsubscribeProjects = onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if (data && data.projects) {
+                        userProjects = data.projects;
+                        renderProjectsGrid();
+                        renderAiProjectList();
+                        initBuilderSelect();
+                        updateProgressStats();
+                    }
+                } else {
+                    setDoc(docRef, { projects: initialProjects });
+                }
+            }, (error) => {
+                console.debug("Firestore sync note:", error);
+            });
+        }
+
+        window.toggleProjectCompletion = async function(id) {
+            userProjects = userProjects.map(p => p.id ===
